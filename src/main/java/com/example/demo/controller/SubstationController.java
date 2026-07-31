@@ -4,6 +4,7 @@ import com.example.demo.entity.Substation;
 import com.example.demo.repository.SubstationRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.*;
 
@@ -18,6 +19,7 @@ public class SubstationController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Substation> create(@RequestBody Substation substation) {
         Substation saved = substationRepository.save(substation);
         return ResponseEntity.ok(saved);

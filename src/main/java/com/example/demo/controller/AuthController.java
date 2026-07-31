@@ -11,6 +11,7 @@ import com.example.demo.dto.LoginRequest;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.JwtUtil;
+import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 
 import java.util.Map;
@@ -35,7 +36,7 @@ public class AuthController {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole("Tenaga Ahli");
+        user.setRole(Role.TEKNISI);
 
         User saved = userRepository.save(user);
         return ResponseEntity.ok(Map.of(
